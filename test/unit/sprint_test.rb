@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class SprintTest < Test::Unit::TestCase
-  fixtures :sprints
+class SprintTest < ActiveSupport::TestCase
 
   def test_truth
     assert true

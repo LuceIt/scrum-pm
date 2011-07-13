@@ -14,6 +14,14 @@
       </div>
     </td>
   </tr>
+  <tr>
+    <td>
+      <%= t("id") %>: <span><%= task.id.to_s %></span>
+    </td>
+    <td style="text-align: right;">
+      <%= t("spent_hours") %>: <span><%= task.spent_hours.to_s %></span>
+    </td>
+  </tr>
 <tr>
     <td>
       <p id="edit_user_<%= task.id %>" class="editable">

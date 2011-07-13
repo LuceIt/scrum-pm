@@ -9,6 +9,7 @@ es:
   priority: Prioridad
   ID: ID
   estimation: Estimación
+  spent_hours: Horas
   actions: Acciones
   new_sprint: Nuevo sprint
   days: Días

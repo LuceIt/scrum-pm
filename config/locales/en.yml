@@ -8,6 +8,7 @@ en:
   user_story: User story
   priority: Priority
   ID: ID
+  spent_hours: Spent hours
   estimation: Estimation
   actions: Actions
   new_sprint: New sprint

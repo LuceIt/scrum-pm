@@ -1,6 +1,6 @@
 Scrum PM v. 0.1.6
 
-This version is compatibile with Redmine 0.9 stable. Previous versions may not work due to differences in new Issue form.
+This version is compatibile with Redmine 1.0.3 stable. Previous versions may not work due to differences in new Issue form.
 
 Scrum PM is a plugin for Redmine for Scrum project management. Redmine Version class becomes a sprint and issue becomes task. Most actions support drag and drop, eg. dashboard where you can change status of your task simply by draging it to another column. 
 Some more interesting stuff planned:

@@ -33,6 +33,11 @@
         </td>
       </tr>
       <tr>
+        <td colspan="3">
+          <%= t("spent_hours") %>: <span><%= sprintf("%.2f", user_story.total_assigned_hours) %></span>
+        </td>
+      </tr>
+      <tr>
         <td colspan="3" class="tab_us_description">
             <%= user_story.description -%>
         </td>

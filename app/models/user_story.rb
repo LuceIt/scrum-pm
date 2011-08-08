@@ -35,6 +35,14 @@ class UserStory < ActiveRecord::Base
     time_estimate.value
   end
 
+  def total_assigned_hours
+    @total_assigned_hours ||= 0
+    issues.each { |issue| 
+      @total_assigned_hours += issue.spent_hours
+    }
+    @total_assigned_hours
+  end
+
 end
 
 

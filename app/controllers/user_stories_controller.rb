@@ -3,18 +3,6 @@ class UserStoriesController < ApplicationController
   before_filter :find_project,:authorize, :only => [:new, :create, :edit, :update, :destroy]
   helper :sprints
 
-  # GET /user_stories/1
-  # GET /user_stories/1.xml
-  def show
-    @user_story = UserStory.find(params[:id])
-    @project = Project.find(@user_story.project_id)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  #{ render :xml => @user_story(:include => ) }
-    end
-  end
-
   # GET /user_stories/new
   # GET /user_stories/new.xml
   def new

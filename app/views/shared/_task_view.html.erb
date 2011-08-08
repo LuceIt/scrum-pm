@@ -19,9 +19,7 @@
       <%= t("id") %>: <span><%= task.id.to_s %></span>
     </td>
     <td style="text-align: right;">
-      <%#= printf("%0.02f", task.spent_hours) %>
       <%= t("spent_hours") %>: <span><%= sprintf("%.2f", task.spent_hours) %></span>
-
     </td>
   </tr>
 <tr>

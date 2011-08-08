@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class SprintTest < ActiveSupport::TestCase
+class SprintTest < Test::Unit::TestCase 
 
   def test_truth
     assert true

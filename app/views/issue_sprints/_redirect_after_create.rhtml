@@ -1,7 +1,10 @@
 <script type="text/javascript">
   Event.observe(window, 'load', function(){
-      if(<%= issue.redirect_to.nil? ? "false" :"true"  %>){
-          window.location= '<%= issue.redirect_to %>';
+      if(<%= not issue.redirect_to.nil? %>){
+      <%= redirect_url = issue.redirect_to 
+          issue.redirect_to = nil
+          issue.save %>
+          window.location= '<%= redirect_url %>';
       }
   });
 </script>

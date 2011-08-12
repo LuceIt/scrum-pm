@@ -4,7 +4,6 @@ class IssueSprintsController < IssuesController
   helper SprintsHelper
   helper CustomFieldsHelper
 
-  
   # Add a new issue
   # The new issue will be created from an existing one if copy_from parameter is given
   def new

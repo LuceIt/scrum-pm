@@ -38,6 +38,7 @@ es:
   user_story_edit: Editar historia de usuario
   name: Nombre
   description: Descripción
+  dod: Definición de hecho
   update: Actualizar
   add_task: Añadir tarea
   stats: Estadísticas

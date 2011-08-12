@@ -17,6 +17,14 @@
                        :class => 'wiki-edit' %></p>
   </p>
   <p>
+    <%= f.label l :dod %><br />
+    <p><%= f.text_area :dod,
+                       :cols => 60,
+                       :rows => (@user_story.dod.blank? ? 10 : [[10, @user_story.dod.length / 50].max, 100].min),
+                       :accesskey => accesskey(:edit),
+                       :class => 'wiki-edit' %></p>
+  </p>
+  <p>
     <%= f.label l('priority') %> <br/>
     <%= f.spinbox_field :priority, :value => @user_story.priority, :align => "right" %>
   </p>
@@ -31,5 +39,6 @@
 <% end %>
 
 <%= wikitoolbar_for 'user_story_description' %>
+<%= wikitoolbar_for 'user_story_dod' %>
 </div>
 </div>

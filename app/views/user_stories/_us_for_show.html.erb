@@ -38,8 +38,13 @@
             </td>
           </tr>
           <tr>
-            <td colspan="3" class="tab_us_description">
-              <%= user_story.description -%>
+            <td colspan="3"> 
+              <div class="us_field_header"><%= l('description') %>:</div><div><pre class="tab_us_description"><%= user_story.description -%></pre></div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" >
+              <div class="us_field_header"><%= l('dod') %>:</div><div><pre class="tab_us_dod"><%= user_story.dod -%></pre></div>
             </td>
           </tr>
           <tr>

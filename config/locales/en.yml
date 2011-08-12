@@ -38,6 +38,7 @@ en:
   user_story_edit: Edit user story
   name: Name
   description: Description
+  dod: Definition of done
   update: Update
   add_task: Add task
   stats: Statistics

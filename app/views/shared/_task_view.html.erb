@@ -10,7 +10,7 @@
   <tr>
     <td colspan="2">
       <div class="task_description">
-        <%= task.description.first(30) %>
+        <%= task.description.size > 200 ? task.description.first(200) + "..." : task.description %>
       </div>
     </td>
   </tr>

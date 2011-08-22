@@ -1,5 +1,5 @@
 <tr class="<%= classify( count )  %>" id="tab_us_<%= user_story.id %>">
-  <td class="tab_us_main">
+  <td class="<%= style_for_user_story(user_story) %>">
     <%= link_to image_tag("/plugin_assets/redmine_sprints/images/task_add.png")+" "+l('add_task'),
       {:controller => 'issue_sprints',:action => 'new', :project_id => @project, :user_story_id => user_story.id},
       {:id => "new_us", :title => l('new_task'),
@@ -14,7 +14,7 @@
         :update => "hidden_item",
         :id => "new_us", :title => l('new_task'),
         :style => "float:right;padding:3px;" %>
-        <%= image_tag("/plugin_assets/redmine_sprints/images/us-top.png") %>
+        <%= user_story.technical? ? image_tag("/plugin_assets/redmine_sprints/images/us-top-tech.png") : image_tag("/plugin_assets/redmine_sprints/images/us-top.png") %>
         <table>
           <tr >
             <td><div class="tab_sprint_user_story">#<%= user_story.us_number %></div></td>
@@ -77,7 +77,7 @@
             </td>
           </tr>
         </table>
-        <%= image_tag("/plugin_assets/redmine_sprints/images/us-bottom.png") %>
+        <%= user_story.technical? ? image_tag("/plugin_assets/redmine_sprints/images/us-bottom-tech.png") : image_tag("/plugin_assets/redmine_sprints/images/us-bottom.png") %>
       </td>
       <td></td>
       <td class="tab_us_align_top" id="<%= "tasks_1_us_#{user_story.id}" %>">

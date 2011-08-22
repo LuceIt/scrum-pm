@@ -240,12 +240,16 @@ div.calendar{
   text-align: center;
 }
 
-td.tab_us_main {
+td.tab_us {
   width: 234px;
 }
 
-td.tab_us_main table {
+td.tab_us.main table {
   background-color: #99ccff;
+}
+
+td.tab_us.tech table {
+  background-color: #F6FAAC;
 }
 
 .sprint_stats_done{
@@ -439,14 +443,13 @@ dt.user_story_task{
   width: 5%;
 }
 
-.tab_us_main{
+.tab_us{
   vertical-align: top;
 }
 
-.tab_us_main table{
+.tab_us table{
   min-width: 234px;
   width: 100%;
-  background: #99ccff;
   margin: -3px 0 -3px 0;
 }
 

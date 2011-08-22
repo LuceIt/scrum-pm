@@ -1,5 +1,9 @@
 module SprintsHelper
 
+  def style_for_user_story(user_story)
+    user_story.technical? ? 'tab_us tech' : 'tab_us main'
+  end
+
   def classify( count )
     return count == 0 ? 'even' : 'odd'
   end

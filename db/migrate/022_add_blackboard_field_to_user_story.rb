@@ -1,6 +1,6 @@
 class AddBlackboardFieldToUserStory < ActiveRecord::Migration
   def self.up
-    add_column :user_stories, :blackboard, :boolean
+    add_column :user_stories, :blackboard, :boolean, :default => true
   end
 
   def self.down

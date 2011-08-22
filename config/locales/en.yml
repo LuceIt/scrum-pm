@@ -39,6 +39,7 @@ en:
   name: Name
   description: Description
   dod: Definition of done
+  blackboard: Blackboard
   update: Update
   add_task: Add task
   stats: Statistics
@@ -51,3 +52,6 @@ en:
   error_changing_status: Error while changing status. You may not have persmissions.
   error_while_adding_sprint: Error while adding Sprint. Field Date is required.
   field_user_story: Field User Story
+
+  "yes" : 'yes'
+  "no" : 'no'

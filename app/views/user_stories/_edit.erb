@@ -24,6 +24,7 @@
                        :accesskey => accesskey(:edit),
                        :class => 'wiki-edit' %></p>
   </p>
+  <p><%= f.label l('blackboard') %>: <%= f.check_box :blackboard %></p>
   <p>
     <%= f.label l('priority') %> <br/>
     <%= f.spinbox_field :priority, :value => @user_story.priority, :align => "right" %>

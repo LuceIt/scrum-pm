@@ -39,6 +39,7 @@ es:
   name: Nombre
   description: Descripción
   dod: Definición de hecho
+  blackboard: Pizarra
   update: Actualizar
   add_task: Añadir tarea
   stats: Estadísticas
@@ -52,3 +53,5 @@ es:
   error_while_adding_sprint: Error añadiendo Sprint. El campo 'Fecha' es obligatorio.
   field_user_story: Campo de historia de usuario
 
+  "yes": 'si'
+  "no": 'no'

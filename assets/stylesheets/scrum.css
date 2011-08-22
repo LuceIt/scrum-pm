@@ -490,6 +490,12 @@ dt.user_story_task{
   padding-bottom: 5px;
 }
 
+.us_field_label {
+  font-weight: bold;
+  padding-bottom: 5px;
+  padding-right: 3px;
+}
+
 .us_task{
   margin: 2px;
   padding: 2px;

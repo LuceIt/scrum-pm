@@ -41,6 +41,10 @@ es:
   dod: Definición de hecho
   blackboard: Pizarra
   technical: Técnica
+  bug: Bug
+  bugtype: Tipo
+  internal: Interno
+  external: Externo
   update: Actualizar
   add_task: Añadir tarea
   stats: Estadísticas

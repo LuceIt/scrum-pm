@@ -41,6 +41,10 @@ en:
   dod: Definition of done
   blackboard: Blackboard
   technical: Technical
+  bug: Bug
+  bugtype: Type
+  internal: Internal
+  external: External
   update: Update
   add_task: Add task
   stats: Statistics

@@ -56,6 +56,11 @@
             </td>
           </tr>
           <tr>
+            <td>
+              <span class="us_field_label"><%= l('technical') %>:</span><span><%= user_story.technical? ? l('yes') : l('no') %></span>
+            </td>
+          </tr>
+          <tr>
             <td colspan="2" class="tab_us_diagrams">
               <div>
                 <% for diagram in user_story.diagrams %>

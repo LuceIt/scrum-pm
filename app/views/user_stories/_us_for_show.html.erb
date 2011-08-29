@@ -14,7 +14,7 @@
         :update => "hidden_item",
         :id => "new_us", :title => l('new_task'),
         :style => "float:right;padding:3px;" %>
-        <%= user_story.technical? ? image_tag("/plugin_assets/redmine_sprints/images/us-top-tech.png") : image_tag("/plugin_assets/redmine_sprints/images/us-top.png") %>
+        <%= user_story.bug? ? image_tag("/plugin_assets/redmine_sprints/images/us-top-tech.png") : image_tag("/plugin_assets/redmine_sprints/images/us-top.png") %>
         <table>
           <tr >
             <td><div class="tab_sprint_user_story">#<%= user_story.us_number %></div></td>
@@ -51,8 +51,8 @@
             <td>
               <span class="us_field_label"><%= l('blackboard') %>:</span><span><%= user_story.blackboard ? l('yes') : l('no') %></span>
             </td>
-            <td colspan="2">
-              <span class="us_field_label"><%= l('bug') %>:</span><span><%= user_story.bug? ? l('yes') : l('no') %> <%= user_story.bug? ? user_story.bug_internal? ? l('internal') : l('external') : '' %> </span>
+            <td colspan="2" style="<%= user_story.bug? ? '' : 'display:none;'%>">
+              <span class="us_field_label"><%= l('bug') %>:</span><span><%= user_story.bug? ? user_story.bug_internal? ? l('internal') : l('external') : '' %> </span>
             </td>
           </tr>
           <tr>
@@ -80,7 +80,7 @@
             </td>
           </tr>
         </table>
-        <%= user_story.technical? ? image_tag("/plugin_assets/redmine_sprints/images/us-bottom-tech.png") : image_tag("/plugin_assets/redmine_sprints/images/us-bottom.png") %>
+        <%= user_story.bug? ? image_tag("/plugin_assets/redmine_sprints/images/us-bottom-tech.png") : image_tag("/plugin_assets/redmine_sprints/images/us-bottom.png") %>
       </td>
       <td></td>
       <td class="tab_us_align_top" id="<%= "tasks_1_us_#{user_story.id}" %>">

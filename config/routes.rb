@@ -101,5 +101,11 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
 
+  map.with_options :controller => 'settings' do |settings|
+    settings.with_options :conditions => {:method => :get} do |settings|
+      settings.connect 'settings/plugin/redmine_sprints', :controller => 'redmine_sprints_settings', :action => 'index'
+    end
+  end
+
 end
 

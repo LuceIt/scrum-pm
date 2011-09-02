@@ -1,0 +1,6 @@
+<h2><%= link_to l(:label_user_story_status_plural), :controller => 'redmine_sprints_settings', :action => 'index' %> &#187; <%=l(:label_user_status_new)%></h2>
+
+<% form_tag({:controller => 'redmine_sprints_settings', :action => 'create'}, :class => "tabular") do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag l(:button_create) %>
+<% end %>

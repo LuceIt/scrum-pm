@@ -18,6 +18,8 @@ Redmine::Plugin.register :redmine_sprints do
   description 'This is Redmine plugin for scrum software development'
   version '0.1.6'
 
+  settings(:partial => 'redmine_sprints_settings/index')
+
   project_module :sprints do
     permission :view_sprints, {:sprints => [:index, :show]}
     permission :manage_sprints_and_user_stories, {:sprints => [:create, :new, :edit, :update, :assign_us, :assign_to_milestone, :destroy], :user_stories => [:new, :create, :edit, :update, :destroy]}
@@ -28,9 +30,5 @@ Redmine::Plugin.register :redmine_sprints do
     menu.push :dashboard, { :controller => 'sprints', :action => 'show', :id => :show }, :caption => :label_dashboard, :after => :activity, :param => :project_id
     menu.push :backlog, { :controller => 'sprints', :action => 'index' }, :caption => :label_backlog, :after => :activity, :param => :project_id
   end
-
- # Redmine::Activity.map do |activity|
- #   activity.register :tasks
- # end
 
 end

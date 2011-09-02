@@ -1,0 +1,17 @@
+user_story_status_one:
+  id: 1 
+  name: Status 1
+  position: 1
+  is_default: true
+
+user_story_status_two:
+  id: 2 
+  name: Status 2
+  position: 2
+  is_default: false
+
+user_story_status_three:
+  id: 3 
+  name: Status 3
+  position: 3
+  is_default: false

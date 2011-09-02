@@ -6,6 +6,8 @@ es:
   new_user_story: Nueva historia de usuario
   add_user_stories_are_assign: Todas las historias de usuario han sido asignadas
   user_story: Historia de usuario
+  label_user_story_status_plural: Estados de las historias de usuario
+  label_user_status_new: Nuevo estado para historias de usuario
   priority: Prioridad
   ID: ID
   estimation: Estimación
@@ -34,7 +36,11 @@ es:
   choose: Seleccionar
   add: Añadir
   create: Crear
-
+  user_stories_status_created: El nuevo estado para historias de usuario se ha creado correctamente
+  user_stories_status_deleted: El estado ha sido borrado correctamente
+  can_not_delete_user_story_status: Error mientras borraba el estado. Es posible que exista una historia de usuario que lo est� usando
+  user_stories_status_updated: Estado actualizado correctamentel.
+  user_stories_status_cant_be_updated: Error mientras actualizaba el estado.
   user_story_edit: Editar historia de usuario
   name: Nombre
   description: Descripción
@@ -57,6 +63,7 @@ es:
   error_changing_status: Error modificando el estado. Es posible que no tenga el permiso necesario.
   error_while_adding_sprint: Error añadiendo Sprint. El campo 'Fecha' es obligatorio.
   field_user_story: Campo de historia de usuario
+  field_position: Posición
 
   "yes": 'si'
   "no": 'no'

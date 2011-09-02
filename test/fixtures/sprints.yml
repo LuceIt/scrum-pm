@@ -1,15 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
   id: 1
-  name: Sprint 1
+  sprint_no: 1
+  target: Sprint 1
   project_id: 1
-  effective_date: 2009-06-28
+  start_date: 2009-06-28
   duration: 14
 
 two:
   id: 2
-  name: Sprint 2
+  sprint_no: 2
+  target: Sprint 2
   project_id: 1
-  effective_date: 2009-07-10
+  start_date: 2009-07-10
   duration: 14
 

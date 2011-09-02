@@ -1,0 +1,9 @@
+<div class="contextual">
+<%= link_to l(:label_issue_status_new), {:action => 'new'}, :class => 'icon icon-add' %>
+</div>
+
+<h2><%=l(:label_user_story_status_plural)%></h2>
+ 
+<%= render :partial => 'user_stories_status_list' %>
+
+<% html_title(l(:label_user_story_status_plural)) -%>

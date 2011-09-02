@@ -1,0 +1,23 @@
+<table id="user_stories_status_list" class="list">
+  <thead><tr>
+  <th><%=l(:field_status)%></th>
+  <th><%=l(:field_is_default)%></th>
+  <th><%=l(:button_sort)%></th>
+  <th></th>
+  </tr></thead>
+  <tbody>  
+<% for status in @user_stories_statuses %>
+  <tr class="<%= cycle("odd", "even") %>">
+  <td><%= link_to status.name, :action => 'edit', :status_to_update_id => status %></td>
+  <td align="center"><%= checked_image status.is_default? %></td>
+  <td align="center" style="width:15%;"><%= reorder_links('user_story_status', {:action => 'update', :status_to_update_id => status}) %></td>
+  <td class="buttons">
+    <%= link_to(l(:button_delete), { :action => 'destroy', :status_to_delete_id => status },
+                :method => :post,
+                :confirm => l(:text_are_you_sure),
+                :class => 'icon icon-del') %>
+  </td>
+  </tr>
+<% end %>
+  </tbody>
+</table>

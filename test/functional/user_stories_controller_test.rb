@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require File.join(File.dirname(__FILE__), '..', 'test_helper')
 
 class UserStoriesControllerTest < ActionController::TestCase
 
@@ -11,9 +11,4 @@ class UserStoriesControllerTest < ActionController::TestCase
     @project = projects(:projects_001) 
   end  
 
-  test "new user story should render modal panel with form for a new user story" do
-    get :new
-    assert :success
-    assert_template 'user_stories/new'
-  end
 end

@@ -1,0 +1,17 @@
+<%= error_messages_for 'user_stories_status' %>
+
+<div class="box">
+<!--[form:user_stories_status]-->
+<p><label for="user_stories_status_name"><%=l(:field_name)%><span class="required"> *</span></label>
+<%= text_field 'user_stories_status', 'name'  %></p>
+
+<p><label for="user_stories_status_position"><%=l(:field_position)%><span class="required"> *</span></label>
+<%= text_field 'user_stories_status', 'position'  %></p>
+
+<p><label for="user_stories_status_is_default"><%=l(:field_is_default)%></label>
+<%= check_box 'user_stories_status', 'is_default' %></p>
+
+<%= call_hook(:view_user_stories_statuses_form, :user_stories_status => @user_stories_status) %>
+
+<!--[eoform:user_stories_status]-->
+</div>

@@ -8,8 +8,6 @@ class SprintsController < ApplicationController
   before_filter :burndown, :only => [:index, :show]
   before_filter :check_if_redirected, :only =>[:show]
   
-  
-#  helper TasksHelper
   helper CustomFieldsHelper
   helper SprintsHelper
   include SprintsHelper
@@ -32,6 +30,7 @@ class SprintsController < ApplicationController
         @data = load_sprint_stats(@sprint,[])
       end
       @issue_statuses = IssueStatus.find(:all)
+      @user_stories_statuses = UserStoriesStatus.find(:all)
       @project_users = User.find(:all, :joins => :members, :conditions => ["members.project_id = ?", @project.id])
 
       respond_to do |format|
@@ -170,7 +169,6 @@ class SprintsController < ApplicationController
     errors.add :issue_id, :activerecord_error_invalid if (time_entry.issue_id && !issue) || (issue && project!=issue.project)
   end
 
-#  TODO przepisać na issues z tasków
   def us_points_per_day(sprint, tasklogs, date)
     tmp_tl = tasklogs.find_all{|tl| tl.created_at <= date}
 
@@ -263,11 +261,6 @@ class SprintsController < ApplicationController
         # Keep unsaved issue ids to display them in flash error
         unsaved_issue_ids << issue.id
       end
-    end
-    if unsaved_issue_ids.empty?
-#      flash[:notice] = l(:notice_successful_update) unless user_story.issues.empty?
-    else
-#      flash[:error] = l(:notice_failed_to_save_issues, unsaved_issue_ids.size, user_story.issues.size, '#' + unsaved_issue_ids.join(', #'))
     end
   end
   

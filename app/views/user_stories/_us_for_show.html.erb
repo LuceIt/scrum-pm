@@ -14,8 +14,10 @@
             <td><div class="tab_sprint_user_story">#<%= user_story.us_number %></div></td>
             <td class="tab_us_name"><%=h user_story.name %>(P<%= user_story.priority %>)</td>
             <td class="tab_us_links">
-              <!--This will be done at some point-->
-              <%#= link_to_object(user_story, "show", "story") %>
+              <%= link_to image_tag("/plugin_assets/redmine_sprints/images/edit.png"),
+                {:controller => :user_stories, :action => :change_status, :project_id => @project, :id => user_story.id, :target => "show"},
+                {:id => "edit_us_status", :title => l('user_story_status_edit'), :onclick => "Modalbox.show(this.href, {title: this.title, width: 370}); return false;"}
+              %>
               <%= link_to image_tag("/plugin_assets/redmine_sprints/images/story_edit.png"),
                 {:controller => :user_stories, :action => :edit, :project_id => @project, :id => user_story.id, :target => "show"},
                 {:id => "edit_us", :title => l('user_story_edit'), :onclick => "Modalbox.show(this.href, {title: this.title, width: 370}); return false;"}
@@ -57,6 +59,8 @@
           <tr>
             <td colspan="3">
               <span class="us_field_label"><%= l('status') %>:</span><span><%= user_story.user_stories_status.name %></span>
+            </td>
+          </tr>
           <tr>
             <td colspan="2" class="tab_us_diagrams">
               <div>
@@ -130,3 +134,11 @@
                                                                                                                       :url    => {:controller => :issue_sprints, :action => :status_change, :status_id => 3, :project_id => @project, :user_story_id => user_story.id }
                                                                                                                      )%>
                                                                                                                    </tr>
+<script type="text/javascript">
+$$('#us_edit_status_<%= user_story.id %> span:first-child').each(function(item){
+          item.observe('click', function(){
+              this.hide();
+              this.siblings().each(Element.show);
+          });
+      });
+</script>

@@ -22,7 +22,7 @@ Redmine::Plugin.register :redmine_sprints do
 
   project_module :sprints do
     permission :view_sprints, {:sprints => [:index, :show]}
-    permission :manage_sprints_and_user_stories, {:sprints => [:create, :new, :edit, :update, :assign_us, :assign_to_milestone, :destroy], :user_stories => [:new, :create, :edit, :update, :destroy]}
+    permission :manage_sprints_and_user_stories, {:sprints => [:create, :new, :edit, :update, :assign_us, :assign_to_milestone, :destroy], :user_stories => [:new, :create, :edit, :update, :destroy, :change_status, :update_user_story_status]}
     permission :manage_tasks, {:issue_sprints => [:new, :create, :status_change, :update_task, :status_delete]}
   end
   

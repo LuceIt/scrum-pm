@@ -42,6 +42,7 @@ es:
   user_stories_status_updated: Estado actualizado correctamentel.
   user_stories_status_cant_be_updated: Error mientras actualizaba el estado.
   user_story_edit: Editar historia de usuario
+  user_story_status_edit: Cambiar estado de la historia de usuario
   name: Nombre
   description: Descripción
   dod: Definición de hecho
@@ -52,6 +53,7 @@ es:
   internal: Interno
   external: Externo
   update: Actualizar
+  update_date: Fecha de actualización
   add_task: Añadir tarea
   stats: Estadísticas
   total_story_points: Puntos totales de historia

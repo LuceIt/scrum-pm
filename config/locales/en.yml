@@ -43,6 +43,7 @@ en:
   user_stories_status_cant_be_updated: Error while updating status.
 
   user_story_edit: Edit user story
+  user_story_status_edit: Edit user story status
   name: Name
   description: Description
   dod: Definition of done
@@ -53,6 +54,7 @@ en:
   internal: Internal
   external: External
   update: Update
+  update_date: Update date
   add_task: Add task
   stats: Statistics
   total_story_points: Total story points

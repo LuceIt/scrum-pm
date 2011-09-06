@@ -28,10 +28,6 @@
   <p><%= f.label l('bug') %>: <%= f.check_box(:bug, :onclick => update_page{|page| page[:bug_types].toggle}) %>
   <span style="<%= @user_story.bug? ? '' : 'display: none;' %>" id="bug_types"><%=f.label l('bugtype') %>: <%=f.select(:bug_internal, { l('internal') => true, l('external') => false }, {:selected => @user_story.bug_internal}) %></span></p>
   <p>
-    <%= f.label l('status') %> <br/>
-    <%= f.collection_select( :user_stories_status_id, UserStoriesStatus.find(:all), :id, :name) %>
-  </p>
-  <p>
     <%= f.label l('priority') %> <br/>
     <%= f.spinbox_field :priority, :value => @user_story.priority, :align => "right" %>
   </p>

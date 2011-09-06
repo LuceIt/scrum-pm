@@ -1,6 +1,7 @@
 class UserStoriesController < ApplicationController
   unloadable
-  before_filter :find_project,:authorize, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :find_project, 
+                :authorize, :only => [:new, :create, :edit, :update, :destroy, :change_status, :update_user_story_status]
   helper :sprints
 
   # GET /user_stories/new
@@ -25,6 +26,11 @@ class UserStoriesController < ApplicationController
     render :partial => "user_stories/edit", :locals => {:user_story => @user_story, :target => params[:target]}
   end
 
+  def change_status
+    @user_story = UserStory.find(params[:id])
+    render :partial => "user_stories/edit_us_status", :locals => {:user_story => @user_story, :target => params[:target]}
+  end
+
   # POST /user_stories
   # POST /user_stories.xml
   def create
@@ -32,7 +38,7 @@ class UserStoriesController < ApplicationController
     @user_story.project_id = @project.id
     last_us =UserStory.find(:first, :conditions => ["project_id = ?",@project.id], :order => "us_number DESC")
     @user_story.us_number = last_us.nil? ? 1 : last_us.us_number + 1
-   
+
     if @user_story.save
       render :update do |p|
         if @user_story.sprint.nil?
@@ -64,10 +70,8 @@ class UserStoriesController < ApplicationController
   # PUT /user_stories/1.xml
   def update
     @user_story = UserStory.find(params[:id])
-    
     if @user_story.update_attributes(params[:user_story])
       render :update do |p|
-#        p.replace "tab_milestone_#{@user_story.id}", :partial => "user_stories/milestone_item", :locals => {:user_story => @user_story, :count => @user_story.milestone.user_stories.index(@user_story)} unless @user_story.milestone.nil?
         unless @user_story.sprint.nil?
           if params[:target].blank?
             p.replace "tab_us_#{@user_story.id}", :partial => "user_stories/sprint_item", :locals => {:user_story => @user_story, :count => @user_story.sprint.user_stories.index(@user_story)}
@@ -116,10 +120,32 @@ class UserStoriesController < ApplicationController
     end
   end
 
-  private
-    def find_project
-      @project = Project.find(params[:project_id])
-      rescue ActiveRecord::RecordNotFound
-        render_404
+  def update_user_story_status
+    @user_story = UserStory.find(params[:user_story_id])
+    assignment = UserStoriesAssignment.new(:user_story_id => params[:user_story_id], 
+                                           :user_stories_status_id => params[:user_story][:user_stories_status_id],
+                                           :user_id => User.current.id)
+    if assignment.save and @user_story.update_attributes(params[:user_story])
+      render :update do |page|
+        unless @user_story.sprint.nil?
+          page.replace "tab_us_#{@user_story.id}", :partial => "user_stories/us_for_show", 
+            :locals => {:user_story => @user_story, 
+              :count => @user_story.sprint.user_stories.index(@user_story)}
+        end
+      end
+    else
+      render :update do |page|
+        format.html { render :action => "change_status" }
+        format.xml  { render :xml => @user_story.errors, :status => :unprocessable_entity }
+      end
     end
+  end
+
+  private
+
+  def find_project
+    @project = Project.find(params[:project_id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 end

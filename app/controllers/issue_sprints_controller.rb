@@ -29,7 +29,7 @@ class IssueSprintsController < IssuesController
                           :locals => {:task => task, :issue_statuses => @issue_statuses,
                           :project_users => @project_users}
       end
-    else           
+    else
       render :update do |page|
         page.insert_html :top, "content", content_tag('div', t(:error_changing_status), :class => "error", :id => "errorExplanation")
       end

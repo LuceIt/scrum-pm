@@ -1,0 +1,21 @@
+<div id="edit_us_status_cont">
+<div id="edit_us_status_form">
+
+<% remote_form_for @user_story, :url => {:controller => 'user_stories', :action => "update_user_story_status", :project_id => @project.identifier, :user_story_id => @user_story.id, :target => target},:html => { :method => :post} do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label l :update_date %><br />
+    <%= f.date_select :updated_at %>
+  </p>
+  <p>
+    <%= f.label l('status') %> <br/>
+    <%= f.collection_select( :user_stories_status_id, UserStoriesStatus.find(:all), :id, :name) %>
+  </p>
+  <p>
+    <%= f.submit l('update'), :onclick => 'Modalbox.hide()' %>
+  </p>
+<% end %>
+
+</div>
+</div>

@@ -32,8 +32,6 @@ class TasksController < ApplicationController
                               :offset => @issue_pages.current.offset, 
                               :limit => limit)
       @issue_count_by_group = @query.issue_count_by_group
-#      @unassigned_tasks = Issue.find(:all, :joins => :status,
-#             :conditions => ["issue_statuses.is_closed = ? AND user_story_id IS NULL AND project_id = ?", false, @project.id ])
       @unassigned_tasks = @issues
       @issue_statuses = IssueStatus.find(:all)
       @project_users = User.find(:all, :joins => :members, :conditions => ["members.project_id = ?", @project.id])

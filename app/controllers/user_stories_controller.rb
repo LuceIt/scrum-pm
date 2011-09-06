@@ -40,6 +40,7 @@ class UserStoriesController < ApplicationController
     @user_story.us_number = last_us.nil? ? 1 : last_us.us_number + 1
 
     if @user_story.save
+      @issue_statuses = IssueStatus.find(:all)
       render :update do |p|
         if @user_story.sprint.nil?
           unassigned_us = UserStory.find(:all, :conditions => ["version_id is null and project_id = ?", @project.id])
@@ -71,6 +72,7 @@ class UserStoriesController < ApplicationController
   def update
     @user_story = UserStory.find(params[:id])
     if @user_story.update_attributes(params[:user_story])
+      @issue_statuses = IssueStatus.find(:all)
       render :update do |p|
         unless @user_story.sprint.nil?
           if params[:target].blank?
@@ -109,7 +111,7 @@ class UserStoriesController < ApplicationController
       end
     end
     @user_story.destroy
-
+    @issue_statuses = IssueStatus.find(:all)
     render :update do |p|
       p["tab_us_#{user_story_id}"].visual_effect :blind_up, :duration => 1
       if sprint_id != -1
@@ -126,6 +128,8 @@ class UserStoriesController < ApplicationController
                                            :user_stories_status_id => params[:user_story][:user_stories_status_id],
                                            :user_id => User.current.id)
     if assignment.save and @user_story.update_attributes(params[:user_story])
+
+      @issue_statuses = IssueStatus.find(:all)
       render :update do |page|
         unless @user_story.sprint.nil?
           page.replace "tab_us_#{@user_story.id}", :partial => "user_stories/us_for_show", 
@@ -145,6 +149,7 @@ class UserStoriesController < ApplicationController
 
   def find_project
     @project = Project.find(params[:project_id])
+    @project_users = User.find(:all, :joins => :members, :conditions => ["members.project_id = ?", @project.id])
   rescue ActiveRecord::RecordNotFound
     render_404
   end

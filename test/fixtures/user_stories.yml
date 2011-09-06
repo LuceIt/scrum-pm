@@ -1,11 +1,11 @@
 user_story_one:
   id: 1 
-  name: User Storyyyy One
+  name: User Story One
   description: User Story one
   project_id: 1
   milestone_id: 1
   created_at: <%= 3.minute.ago.to_date.to_s(:db) %>
   us_number: 1
   user_stories_status_id: 1
-  version_id: 1
+  version_id: 2
   time_estimate_id: 1

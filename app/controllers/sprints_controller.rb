@@ -5,7 +5,7 @@ class SprintsController < ApplicationController
 
   before_filter :find_project, :authorize
   before_filter :find_sprint, :except => ["assign_us", 'new', 'create', 'index']
-  before_filter :burndown, :only => [:index, :show]
+  #before_filter :burndown, :only => [:index, :show]
   before_filter :check_if_redirected, :only =>[:show]
   
   helper CustomFieldsHelper

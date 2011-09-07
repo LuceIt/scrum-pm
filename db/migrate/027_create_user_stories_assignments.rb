@@ -5,7 +5,7 @@ class CreateUserStoriesAssignments < ActiveRecord::Migration
       field.references :user_story
       field.references :user_stories_status
       field.references :user
-      field.timestamps
+      field.date :update_date
     end
   end
 

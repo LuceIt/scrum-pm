@@ -1,7 +1,7 @@
 class UserStoriesController < ApplicationController
   unloadable
   before_filter :find_project, 
-                :authorize, :only => [:new, :create, :edit, :update, :destroy, :change_status, :update_user_story_status]
+    :authorize, :only => [:new, :create, :edit, :update, :destroy, :change_status, :update_user_story_status]
   helper :sprints
 
   # GET /user_stories/new
@@ -38,26 +38,33 @@ class UserStoriesController < ApplicationController
     @user_story.project_id = @project.id
     last_us =UserStory.find(:first, :conditions => ["project_id = ?",@project.id], :order => "us_number DESC")
     @user_story.us_number = last_us.nil? ? 1 : last_us.us_number + 1
-
     if @user_story.save
-      @issue_statuses = IssueStatus.find(:all)
-      render :update do |p|
-        if @user_story.sprint.nil?
-          unassigned_us = UserStory.find(:all, :conditions => ["version_id is null and project_id = ?", @project.id])
-          p.replace "no_US_0", "" if UserStory.find(:all, :conditions => ["version_id is null and project_id = ?",@project.id], :order => "priority ASC").size == 1
-          p.insert_html :bottom, 'sprint_0', :partial => "user_stories/backlog_item", :locals => {:user_story => @user_story, :count => unassigned_us.size + 1}
-          p["tab_us_#{@user_story.id}"].visual_effect :highlight, :duration => 2
-        else
-          if params[:target].blank?
-            p.insert_html :bottom, "sprint_#{@user_story.version_id}", :partial => "user_stories/sprint_item", :locals => {:user_story => @user_story, :count => @user_story.sprint.user_stories.size + 1}
+      assignment = create_assignment(@user_story.id,@user_story.user_stories_status.id)
+      if assignment.save
+        @issue_statuses = IssueStatus.find(:all)
+        render :update do |p|
+          if @user_story.sprint.nil?
+            unassigned_us = UserStory.find(:all, :conditions => ["version_id is null and project_id = ?", @project.id])
+            p.replace "no_US_0", "" if UserStory.find(:all, :conditions => ["version_id is null and project_id = ?",@project.id], :order => "priority ASC").size == 1
+            p.insert_html :bottom, 'sprint_0', :partial => "user_stories/backlog_item", :locals => {:user_story => @user_story, :count => unassigned_us.size + 1}
             p["tab_us_#{@user_story.id}"].visual_effect :highlight, :duration => 2
-            p["no_US_#{@user_story.version_id}"].visual_effect :blind_up, :duration => 1
           else
-            if params[:target].eql? "show"
-              p.insert_html :bottom, "dashboard_main_table", :partial => "user_stories/us_for_show", :locals => {:user_story => @user_story, :count => (@user_story.sprint.user_stories.count + 1)}
+            if params[:target].blank?
+              p.insert_html :bottom, "sprint_#{@user_story.version_id}", :partial => "user_stories/sprint_item", :locals => {:user_story => @user_story, :count => @user_story.sprint.user_stories.size + 1}
+              p["tab_us_#{@user_story.id}"].visual_effect :highlight, :duration => 2
+              p["no_US_#{@user_story.version_id}"].visual_effect :blind_up, :duration => 1
+            else
+              if params[:target].eql? "show"
+                p.insert_html :bottom, "dashboard_main_table", :partial => "user_stories/us_for_show", :locals => {:user_story => @user_story, :count => (@user_story.sprint.user_stories.count + 1)}
+              end
             end
-          end
-        end        
+          end        
+        end
+      else
+        respond_to do |format|
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @user_story.errors, :status => :unprocessable_entity }
+        end
       end
     else
       respond_to do |format|
@@ -124,11 +131,11 @@ class UserStoriesController < ApplicationController
 
   def update_user_story_status
     @user_story = UserStory.find(params[:user_story_id])
-    assignment = UserStoriesAssignment.new(:user_story_id => params[:user_story_id], 
-                                           :user_stories_status_id => params[:user_story][:user_stories_status_id],
-                                           :user_id => User.current.id)
+    update_date = Date.new(params[:user_story]['updated_at(1i)'].to_i,
+                           params[:user_story]['updated_at(2i)'].to_i,
+                           params[:user_story]['updated_at(3i)'].to_i)
+    assignment = create_assignment(params[:user_story_id],params[:user_story][:user_stories_status_id],update_date)
     if assignment.save and @user_story.update_attributes(params[:user_story])
-
       @issue_statuses = IssueStatus.find(:all)
       render :update do |page|
         unless @user_story.sprint.nil?
@@ -152,5 +159,12 @@ class UserStoriesController < ApplicationController
     @project_users = User.find(:all, :joins => :members, :conditions => ["members.project_id = ?", @project.id])
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def create_assignment(user_story_id, user_stories_status_id, date = nil)
+    assignment = UserStoriesAssignment.new(:user_story_id => user_story_id,
+                                           :user_stories_status_id => user_stories_status_id,
+                                           :user_id => User.current.id,
+                                           :update_date => date.nil? ? Date.current : date)
   end
 end

@@ -45,5 +45,3 @@ class UserStory < ActiveRecord::Base
   end
 
 end
-
-

@@ -13,9 +13,6 @@ module RedmineSprints
       module ClassMethods
       end
       module InstanceMethods
-        def user_stories_ordered_by_priority
-          UserStory.find(:all, :order => 'priority')
-        end
       end
     end
   end

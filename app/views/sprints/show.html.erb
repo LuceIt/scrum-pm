@@ -61,7 +61,7 @@
               %>
           </td>
         </tr>
-        <% for user_story in @sprint.user_stories_ordered_by_priority %>
+        <% for user_story in @sprint.user_stories %>
           <%= render :partial => "user_stories/us_for_show", :locals => {:user_story => user_story, :count => count} %>  
           <% count = 1 - count %>
         <% end %>

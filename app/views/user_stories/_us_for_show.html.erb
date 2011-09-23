@@ -49,10 +49,10 @@
             </td>
           </tr>
           <tr>
-            <td>
+            <td colspan="2">
               <span class="us_field_label"><%= l('blackboard') %>:</span><span><%= user_story.blackboard ? l('yes') : l('no') %></span>
             </td>
-            <td colspan="2" style="<%= user_story.bug? ? '' : 'display:none;'%>">
+            <td style="<%= user_story.bug? ? '' : 'display:none;'%>">
               <span class="us_field_label"><%= l('bug') %>:</span><span><%= user_story.bug? ? user_story.bug_internal? ? l('internal') : l('external') : '' %> </span>
             </td>
           </tr>

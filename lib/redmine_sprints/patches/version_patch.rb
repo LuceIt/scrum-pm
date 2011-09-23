@@ -6,7 +6,7 @@ module RedmineSprints
         base.send(:include, InstanceMethods)
         base.class_eval do
           unloadable
-          has_many :user_stories, :class_name => 'UserStory', :foreign_key => 'version_id'
+          has_many :user_stories, :class_name => 'UserStory', :foreign_key => 'version_id', :order => 'priority'
           validates_presence_of :effective_date
         end
       end

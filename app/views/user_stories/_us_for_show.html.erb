@@ -12,7 +12,7 @@
         <table>
           <tr >
             <td><div class="tab_sprint_user_story">#<%= user_story.us_number %></div></td>
-            <td class="tab_us_name"><%=h user_story.name %>(P<%= user_story.priority %>)</td>
+            <td class="tab_us_name"><%=h user_story.name %></td>
             <td class="tab_us_links">
               <%= link_to image_tag("/plugin_assets/redmine_sprints/images/edit.png"),
                 {:controller => :user_stories, :action => :change_status, :project_id => @project, :id => user_story.id, :target => "show"},
@@ -26,6 +26,11 @@
                 :url => {:controller => :user_stories, :action => :destroy, :project_id => @project, :id => user_story.id, :confirm => 'Are you sure?', :method => :post},
                 :confirm => l('Are you sure?')
               %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <span class="us_field_label"><%= l('priority') %>:</span><span><%= user_story.priority %></span>
             </td>
           </tr>
           <tr>

@@ -131,9 +131,12 @@ class UserStoriesController < ApplicationController
 
   def update_user_story_status
     @user_story = UserStory.find(params[:user_story_id])
-    update_date = Date.new(params[:user_story]['updated_at(1i)'].to_i,
+    update_date = DateTime.civil(params[:user_story]['updated_at(1i)'].to_i,
                            params[:user_story]['updated_at(2i)'].to_i,
-                           params[:user_story]['updated_at(3i)'].to_i)
+                           params[:user_story]['updated_at(3i)'].to_i,
+                           params[:user_story]['updated_at(4i)'].to_i,
+                           params[:user_story]['updated_at(5i)'].to_i,
+                           params[:user_story]['updated_at(6i)'].to_i)
     assignment = create_assignment(params[:user_story_id],params[:user_story][:user_stories_status_id],update_date)
     if assignment.save and @user_story.update_attributes(params[:user_story])
       @issue_statuses = IssueStatus.find(:all)
